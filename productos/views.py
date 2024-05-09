@@ -23,10 +23,6 @@ def agregar_producto(request):
 
     return render(request, 'agregar.html')
 
-def listar_productos(request):
-    productos = Producto.objects.all()
-    return render(request, 'listar.html', {'productos': productos})
-
 def actualizar_producto(request):
     if request.method == "POST":
         nombre = request.POST.get("nombre")
@@ -42,7 +38,6 @@ def actualizar_producto(request):
         producto_id = request.GET.get('id')
         producto = Producto.objects.get(pk=producto_id)
         return render(request, "actualizar.html", {'producto': producto})
-
 
 def eliminar_producto(request):
     if request.method == "POST":
