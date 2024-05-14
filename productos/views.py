@@ -10,20 +10,13 @@ def listar_productos(request):
     return render(request, 'listar.html', {'productos': productos})
 
 def agregar_producto(request):
-    if request.method == 'POST':
-        nombre = request.POST.get('nombre')
-        precio = request.POST.get('precio')
-        cantidad = request.POST.get('cantidad')
-        
-        producto_nuevo = Producto(nombre=nombre, precio=precio, cantidad=cantidad)
-        producto_nuevo.save()
-
-        # Agregamos el mensaje de éxito
-        messages.success(request, 'Producto agregado exitosamente.')
-
-        return redirect('listar_productos')
-
-    return render(request, 'agregar.html')
+    if request.method == "POST":
+        nombre = request.POST.get("nombre")
+        precio = request.POST.get("precio")
+        cantidad = request.POST.get("cantidad")
+        Producto.objects.create(nombre=nombre, precio=precio, cantidad=cantidad) 
+        return redirect('productos:listar_productos')
+    return render(request, "agregar.html")
 
 def actualizar_producto(request, id):
     producto = get_object_or_404(Producto, pk=id)
