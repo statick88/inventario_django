@@ -21,4 +21,12 @@
     </div>
     <button type="submit" class="btn btn-primary">Agregar</button>
 </form>
+
+<!-- Mostrar mensaje si existe -->
+{% if messages %}
+    <script>
+        // Mostrar el primer mensaje de éxito
+        alert("{{ messages.success.0 }}");
+    </script>
+{% endif %}
 {% endblock %}

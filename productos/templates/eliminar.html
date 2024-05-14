@@ -4,7 +4,8 @@
 
 {% block content %}
 <h1>Eliminar producto</h1>
-<form action="/eliminar" method="post">
+<form action="{% url 'productos:eliminar_producto' %}" method="post">
+    {% csrf_token %}  <!-- Agrega el token CSRF aquí -->
     <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="nombre" name="nombre">
